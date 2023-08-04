@@ -309,7 +309,8 @@ li {
 .about h3 span,
 .skills h3 span,
 .portfolio h3 span,
-.certificate h3 span {
+.certificate h3 span,
+.contact h3 span {
     color: var(--span);
 }
 
@@ -392,7 +393,8 @@ li {
     border: var(--border-3);
 }
 
-.hero .hero-content .btn-cont {
+.hero .hero-content .btn-cont,
+.contact form .btn {
     margin: 0.5rem;
     display: inline-block;
     padding: 0.8rem 2rem;
@@ -406,7 +408,8 @@ li {
     transition: var(--transition-2);
 }
 
-.hero .hero-content .btn-cont:hover {
+.hero .hero-content .btn-cont:hover,
+.contact form .btn:hover {
     background: var(--span);
     color: var(--txt-clr-2);
     border: var(--border-2);
@@ -417,8 +420,6 @@ li {
 .about {
     position: relative;
     background: var(--section);
-    border-top: 1px solid var(--txt-clr);
-    border-bottom: 1px solid var(--txt-clr);
 }
 
 .about .about-content {
@@ -428,7 +429,8 @@ li {
 .about .heading,
 .skills .skills-title,
 .portfolio .portfolio-title,
-.certificate .certificate-title {
+.certificate .certificate-title,
+.contact .contact-title {
     text-align: center;
     font-size: 2.5rem;
     margin: 4rem 0;
@@ -504,73 +506,45 @@ li {
 
 /* Testimonial Skills */
 
-.has-scrollbar::-webkit-scrollbar {
-    width: 7px;
-    /* for vertical scrollbar */
-    height: 10px;
-    /* for horizontal scrollbar */
-}
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
 
-.has-scrollbar::-webkit-scrollbar-track {
-    background: var(--bdy-clr);
-    border-radius: 5px;
-}
-
-.has-scrollbar::-webkit-scrollbar-thumb {
-    background: #0f4681;
-    transition: var(--transition-2);
-    border-radius: 5px;
-}
-
-.has-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: var(--span);
-    transition: var(--transition-2);
-}
-
-.has-scrollbar::-webkit-scrollbar-button {
-    width: 100px;
+    100% {
+        transform: translateX(calc(-250px * 7));
+    }
 }
 
 .testimoni {
     position: relative;
     background-color: var(--section);
-    padding: 3rem;
+    margin: auto;
+    height: 50%;
+    width: 100%;
 }
 
-.testimoni .testimoni-list {
+.testimoni .testimoni-track {
+    animation: scroll 40s linear infinite;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 1px;
-    margin: 1rem 50px;
-    padding: 25px;
-    padding-bottom: 30px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: inline mandatory;
-    scroll-padding-inline: 80px;
+    width: calc(40% * 3);
 }
 
-.testimoni .testimoni-list .testimoni-item {
-    min-width: 15%;
-    scroll-snap-align: start;
+.testimoni .testimoni-track::after {
+    animation: scroll 40s linear infinite;
+    display: flex;
+    width: calc(40% * 3);
 }
 
-.testimoni .testimoni-list .testimoni-item img {
-    width: 70%;
-    color: var(--bdy-clr);
-    filter: grayscale(1);
-    transition: var(--transition-1);
-}
-
-.testimoni .testimoni-list .testimoni-item img:hover {
-    filter: grayscale(0);
+.testimoni .testimoni-track .testimoni-item img {
+    height: 70%;
+    width: 50%;
 }
 
 /* Certificate */
 .certificate {
     position: relative;
+    background-color: var(--section);
 }
 
 .certificate .certificate-container .certificate-gallery {
@@ -653,13 +627,12 @@ li {
 
 .portfolio {
     position: relative;
-    background-color: var(--section);
 }
 
 .portfolio .port-container .port-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 2rem;
     margin: 5rem 0;
 }
 
@@ -732,6 +705,73 @@ li {
     color: var(--gray);
     font-size: 2rem;
 }
+
+/* Contact */
+.contact {
+    position: relative;
+    background-color: var(--section);
+}
+
+.contact form {
+    max-width: 60rem;
+    margin: 1rem auto;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact form .input-box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contact form .input-box input,
+.contact form .input input,
+.contact form textarea {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--txt-clr);
+    background: var(--bdy-clr);
+    border-radius: 0.8rem;
+    margin: 0.7rem 0;
+}
+
+.contact form .input-box input {
+    width: 49%;
+}
+
+.contact form textarea {
+    resize: none;
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-wrap: wrap;
+    padding: 2rem 9%;
+}
+
+.footer-text p {
+    font-size: 1.5rem;
+    margin: 2rem;
+}
+
+.footer-text a {
+    font-size: 1.5rem;
+    color: var(--txt-clr);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.footer-text a:hover {
+    color: var(--span);
+}
+
+
 
 /* media queries */
 
@@ -823,6 +863,10 @@ li {
     .portfolio .port-container .port-gallery .port-box .port-content {
         padding: 4rem 3%;
     }
+
+    .contact {
+        min-height: auto;
+    }
 }
 
 @media (max-width: 768px) {
@@ -877,8 +921,11 @@ li {
         width: 100%;
     }
 
-    .has-scrollbar::-webkit-scrollbar-button {
-        width: 100px;
+    .certificate .certificate-container .certificate-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 2rem;
+        margin: 5rem 0;
     }
 
     .portfolio .port-container .port-gallery .port-box .port-content {
@@ -920,6 +967,11 @@ li {
     .portfolio .port-container .port-gallery .port-box .port-content {
         padding: 6rem 3%;
     }
+
+    .contact form .input-box input {
+        width: 100%;
+    }
+
 }
 
 @media (max-width: 466px) {
