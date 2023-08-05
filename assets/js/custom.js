@@ -6,7 +6,9 @@ const scrollHeader = document.querySelector(".header"),
   navLinks = document.querySelectorAll("header nav ul a"),
   overLay = document.querySelector(".overlay"),
   mode = document.querySelector("body"),
-  modeToggle = document.querySelector("#mode");
+  modeToggle = document.querySelector("#mode"),
+  dataModalContainer = document.querySelector("#data-modal-container"),
+  itemDetileBtn = document.querySelectorAll(".item-detail-button");
 
 // scroll active navbar menu
 
@@ -72,3 +74,22 @@ const typedJs = new Typed(".element", {
   backDelay: 1000,
   loop: true,
 });
+
+// Detile Modal Certificate
+itemDetileBtn.forEach((btn) => {
+  btn.onclick = (e) => {
+    dataModalContainer.style.display = "flex";
+    e.preventDefault();
+  };
+});
+
+document.querySelector(".modal .modal-container .close-icon").onclick = (e) => {
+  dataModalContainer.style.display = "none";
+  e.preventDefault();
+};
+
+window.onclick = (e) => {
+  if (e.target === dataModalContainer) {
+    dataModalContainer.style.display = "none";
+  }
+};

@@ -441,7 +441,7 @@ li {
 }
 
 .about .about-img img {
-    width: 60vh;
+    width: 80vh;
 }
 
 .about .about-content .content {
@@ -623,6 +623,50 @@ li {
     font-size: 2rem;
 }
 
+/* Modal */
+.modal {
+    background: var(--overlay);
+    position: relative;
+    padding: 15px;
+    margin: 15px 12px;
+    border-radius: 14px;
+    box-shadow: var(--shadow-3);
+    transform: scale(1.2);
+    opacity: 1;
+    transition: var(--transition-1);
+    z-index: 2;
+}
+
+.modal.active .modal-container {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+
+.modal-container .close-icon {
+    position: absolute;
+    color: var(--txt-clr);
+    right: 1rem;
+    top: 0.5rem;
+    font-size: 2rem;
+}
+
+.modal-content {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content img {
+    width: 70%;
+    height: 80%;
+    border-radius: 10px;
+    border: var(--border);
+}
+
 /* Portfolio */
 
 .portfolio {
@@ -747,24 +791,23 @@ li {
 
 /* Footer */
 .footer {
+    background-color: var(--bdy-clr);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: end;
     flex-wrap: wrap;
-    padding: 2rem 9%;
 }
 
 .footer-text p {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 2rem;
 }
 
 .footer-text a {
-    font-size: 1.5rem;
-    color: var(--txt-clr);
+    font-size: 1.3rem;
+    color: var(--span);
     cursor: pointer;
-    text-decoration: underline;
 }
 
 .footer-text a:hover {
@@ -908,7 +951,9 @@ li {
 
     .about .heading,
     .skills .skills-title,
-    .portfolio .portfolio-title {
+    .certificate .certificate-title,
+    .portfolio .portfolio-title,
+    .contact .contact-title {
         font-size: 2rem;
         margin-bottom: 0rem;
     }
@@ -954,7 +999,8 @@ li {
 
     .about .heading,
     .skills .skills-title,
-    .portfolio .portfolio-title {
+    .certificate .certificate-title .portfolio .portfolio-title,
+    .contact .contact-title {
         font-size: 1.8rem;
     }
 
@@ -983,7 +1029,7 @@ li {
     }
 
     .header .navbar-nav .nav-links a {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
     }
 
     .header .navbar-nav h1 a {
@@ -1007,12 +1053,13 @@ li {
 
     .about .heading,
     .skills .skills-title,
-    .portfolio .portfolio-title {
+    .certificate .certificate-title .portfolio .portfolio-title,
+    .contact .contact-title {
         font-size: 1.5rem;
     }
 
     .about .about-content .content p {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         font-weight: var(--fw-300);
     }
 
