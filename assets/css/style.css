@@ -585,86 +585,66 @@ li {
     transform: scale(1.1);
 }
 
-.certificate .certificate-container .certificate-gallery .certificate-box .certificate-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    background: #000000dc;
-    transform: scale(0);
-    flex-direction: column;
-    transition: var(--transition-2);
-    align-items: center;
-    justify-content: center;
-}
 
-.certificate .certificate-container .certificate-gallery .certificate-box:hover .certificate-content {
-    transform: scale(100%);
-    transition: var(--transition-2);
-}
-
-
-.certificate .certificate-container .certificate-gallery .certificate-box .certificate-content a {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--bdy-clr);
-    margin: 0 9rem;
-    border-radius: 10px;
-    width: 60px;
-    height: 60px;
-}
-
-.certificate .certificate-container .certificate-gallery .certificate-box .certificate-content a i {
-    color: var(--span);
-    font-size: 2rem;
-}
-
-/* Modal */
+/* Modal Certificate*/
 .modal {
-    background: var(--overlay);
-    position: relative;
-    padding: 15px;
-    margin: 15px 12px;
-    border-radius: 14px;
-    box-shadow: var(--shadow-3);
-    transform: scale(1.2);
-    opacity: 1;
-    transition: var(--transition-1);
-    z-index: 2;
-}
-
-.modal.active .modal-container {
-    transform: scale(1);
-    opacity: 1;
-}
-
-
-
-.modal-container .close-icon {
-    position: absolute;
-    color: var(--txt-clr);
-    right: 1rem;
-    top: 0.5rem;
-    font-size: 2rem;
-}
-
-.modal-content {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    z-index: 1;
+    overflow: auto;
     display: flex;
-    flex-wrap: nowrap;
-    margin: 1rem;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    pointer-events: none;
 }
 
-.modal-content img {
-    width: 70%;
-    height: 80%;
+.modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal.active .modal-content img {
+    animation: zoom 0.3s linear;
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.modal .close-icon {
+    position: absolute;
+    top: 3.5em;
+    color: var(--txt-clr);
+    right: 1.5em;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.modal .modal-content {
+    display: flex;
+    margin-top: 3.9rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .modal-content img {
+    width: 55%;
+    height: 50%;
     border-radius: 10px;
-    border: var(--border);
+    border: var(--border-5);
 }
 
 /* Portfolio */
@@ -721,7 +701,7 @@ li {
     transform: translateY(100%);
     flex-direction: column;
     transition: var(--transition-1);
-    padding: 5rem 3%;
+    padding: 3rem 3%;
 }
 
 .portfolio .port-container .port-gallery .port-box:hover .port-content {
@@ -736,7 +716,7 @@ li {
 .portfolio .port-container .port-gallery .port-box .port-content p {
     font-size: 0.8rem;
     color: #ffff;
-    margin: 0.5rem 0 1.5rem;
+    margin: 1rem 0;
 }
 
 .portfolio .port-container .port-gallery .port-box .port-content a {
@@ -814,7 +794,33 @@ li {
     color: var(--span);
 }
 
+/* BACK TO TOP */
 
+.back-top-btn {
+    background-color: var(--section);
+    color: var(--gray);
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    border: 1px solid var(--span);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-1);
+    z-index: 4;
+}
+
+.back-top-btn.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-10px);
+}
 
 /* media queries */
 
@@ -895,12 +901,26 @@ li {
         width: 45vh;
     }
 
-    .about .about-img img {
-        width: 50vh;
+    .about .about-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
+    .about .about-img img {
+        width: 55vh;
+    }
+
+
     .about .about-content .content p {
-        font-size: 1.3rem;
+        font-size: 1rem;
+    }
+
+    .modal .modal-content img {
+        width: 70%;
+        height: 60%;
+        border-radius: 10px;
+        border: var(--border-5);
     }
 
     .portfolio .port-container .port-gallery .port-box .port-content {
@@ -973,8 +993,15 @@ li {
         margin: 5rem 0;
     }
 
+    .modal .modal-content img {
+        width: 85%;
+        height: 80%;
+        border-radius: 10px;
+        border: var(--border-5);
+    }
+
     .portfolio .port-container .port-gallery .port-box .port-content {
-        padding: 1rem 3%;
+        padding: 10rem 3%;
     }
 }
 
@@ -999,7 +1026,8 @@ li {
 
     .about .heading,
     .skills .skills-title,
-    .certificate .certificate-title .portfolio .portfolio-title,
+    .certificate .certificate-title,
+    .portfolio .portfolio-title,
     .contact .contact-title {
         font-size: 1.8rem;
     }
@@ -1010,14 +1038,29 @@ li {
         line-height: 1.5rem;
     }
 
+    .modal .modal-content img {
+        width: 90%;
+        height: 90%;
+        border-radius: 10px;
+        border: var(--border-5);
+    }
+
     .portfolio .port-container .port-gallery .port-box .port-content {
-        padding: 6rem 3%;
+        padding: 9rem 3%;
     }
 
     .contact form .input-box input {
         width: 100%;
     }
 
+    .footer-text p {
+        font-size: 1rem;
+        margin: 2rem;
+    }
+
+    .footer-text a {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 466px) {
@@ -1053,7 +1096,8 @@ li {
 
     .about .heading,
     .skills .skills-title,
-    .certificate .certificate-title .portfolio .portfolio-title,
+    .certificate .certificate-title,
+    .portfolio .portfolio-title,
     .contact .contact-title {
         font-size: 1.5rem;
     }
@@ -1063,7 +1107,23 @@ li {
         font-weight: var(--fw-300);
     }
 
+    .modal .modal-content img {
+        width: 90%;
+        height: 80%;
+        border-radius: 10px;
+        border: var(--border-5);
+    }
+
     .portfolio .port-container .port-gallery .port-box .port-content {
-        padding: 2rem 3%;
+        padding: 9rem 3%;
+    }
+
+    .footer-text p {
+        font-size: 0.8rem;
+        margin: 2rem;
+    }
+
+    .footer-text a {
+        font-size: 0.9rem;
     }
 }

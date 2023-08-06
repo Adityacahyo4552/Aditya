@@ -7,16 +7,17 @@ const scrollHeader = document.querySelector(".header"),
   overLay = document.querySelector(".overlay"),
   mode = document.querySelector("body"),
   modeToggle = document.querySelector("#mode"),
-  dataModalContainer = document.querySelector("#data-modal-container"),
-  itemDetileBtn = document.querySelectorAll(".item-detail-button");
+  backTopBtn = document.querySelector("[data-back-top-btn]");
 
 // scroll active navbar menu
 
 window.addEventListener("scroll", function () {
   if (window.scrollY >= 100) {
     scrollHeader.classList.add("active");
+    backTopBtn.classList.add("active");
   } else {
     scrollHeader.classList.remove("active");
+    backTopBtn.classList.remove("active");
   }
 });
 
@@ -76,20 +77,27 @@ const typedJs = new Typed(".element", {
 });
 
 // Detile Modal Certificate
-itemDetileBtn.forEach((btn) => {
-  btn.onclick = (e) => {
-    dataModalContainer.style.display = "flex";
-    e.preventDefault();
-  };
+const modalBtn = document.querySelectorAll("#item-detail-image"),
+  modal = document.querySelector(".modal"),
+  modalImg = document.querySelector("#modal-img"),
+  closeBtn = document.querySelector(".modal .close-icon");
+
+modalBtn.forEach((image) => {
+  image.addEventListener("click", () => {
+    modalImg.src = image.src;
+    modal.classList.add("active");
+
+    closeBtn.addEventListener("click", (e) => {
+      modal.classList.remove("active");
+      e.preventDefault();
+    });
+  });
 });
 
-document.querySelector(".modal .modal-container .close-icon").onclick = (e) => {
-  dataModalContainer.style.display = "none";
-  e.preventDefault();
-};
+// window close modal
 
-window.onclick = (e) => {
-  if (e.target === dataModalContainer) {
-    dataModalContainer.style.display = "none";
+window.onclick = (f) => {
+  if (f.target === modal) {
+    modal.classList.remove("active");
   }
 };
